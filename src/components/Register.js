@@ -8,7 +8,8 @@ const Register = () => {
     const [password,setPassword] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [passwordValid, setPasswordValid] = useState(false);
-    const [passwordMatch, setPasswordMatch] = useState(false);
+    const [passwordMatch, setPasswordMatch] = useState(true);
+    const [wrongPassword, setWrongPassword] = useState(true)
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -43,6 +44,16 @@ const Register = () => {
                 symbolCount += 1;
             }
         }
+        if (symbolCount >=2 && intCount >=2)
+        {
+            setPasswordValid(true)
+            setWrongPassword(true)
+        }
+        else 
+        {
+            setWrongPassword(false)
+        }
+        
           
 
         
@@ -52,11 +63,13 @@ const Register = () => {
     }
 
     const checkBothPasswords = () => {
-        if (password == passwordConfirm){
+        if (password === passwordConfirm){
             console.log("YES")
+            setPasswordMatch(true)
         }
         else {
             console.log("NO")
+            setPasswordMatch(false)
         }
     }
 
@@ -66,7 +79,6 @@ const Register = () => {
         <div>
             <Title text="hobex | Register"/>
             <h4>To get started, you have to set up your login credentials!</h4>
-
             <form id="form">
                 <label>USERNAME:</label>     
                 <input className="input-box" type="text" placeholder="Enter username." onChange={handleUsernameChange} onBlur = {checkUsername}></input>           
@@ -76,9 +88,11 @@ const Register = () => {
                 <div id="password-box">
                 <div id="password-box-entry">
                 <label>PASSWORD:</label>     
-                <input className ="input-box" type="text" placeholder="Enter password." onChange = {handlePasswordChange} onBlur= {checkPassword}></input>          
+                <input className ="input-box" type="text" placeholder="Enter password." onChange = {handlePasswordChange} onBlur= {checkPassword}></input> 
+                {wrongPassword == false && (<h4 className="warningMessage">Your password does not meet the requirements.</h4>)}        
                 <label>CONFIRM PASSWORD:</label>     
-                <input className ="input-box" type="text" placeholder="Confirm password."onChange = {handlePasswordConfirmChange} onBlur = {checkBothPasswords}></input>          
+                <input className ="input-box" type="text" placeholder="Confirm password."onChange = {handlePasswordConfirmChange} onBlur = {checkBothPasswords}></input>  
+                {passwordMatch == false && (<h4 className="warningMessage">Your passwords do not match.</h4>)}        
                 </div>
                     <div id="password-box-text">
                     *Passwords should contain atleast 2 numerical characters (0-9) and atleast 2 symbols <br></br>(! * / & # $...)
