@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+html{
+    overflow: hidden;
+    align-items: center;
+}
+
+.title {
+    font-family: 'Didact Gothic', sans-serif;
+    color: #59B200;
+}
+
+#form{
+    display:flex;
+    flex-direction: column;
+    width:25%;
+    margin: 0 auto;
+    
+}
+
+h4, label {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 20px;
+}
+
+label {
+    text-align: left;
+}
