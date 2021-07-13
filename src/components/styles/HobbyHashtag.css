@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+#hashtag{
+    display:inline-block;
+    font-size: 18px;
+    background-color: #C4C4C4;
+    
+    font-family: Didact Gothic, sans-serif;
+    border-radius: 5px;
+    width:auto;
+    padding:5px;
+    margin:5px;
+    cursor:pointer;
+    transition: 0.5s
+}
+
+#hashtag:hover {
+    padding:8px;
+}
