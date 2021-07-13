@@ -92,10 +92,13 @@ const RegisterSecondPage = ({setReg}) => {
         // Checking done here.
         setReg(4);
     }
+    const goBack = () => {
+        setReg(2);
+    }
 
     return (
         <div id="page">
-            <button className="form-submit-button"><h2 id="button-text">Back </h2></button>
+            <button onClick = {goBack}className="form-submit-button"><h2 id="button-text">Back </h2></button>
             <Title text="hobex | Register"/>
             <h4>What are some hobbies/skills you would like to learn?</h4>
             <div id="currentHobbies">
