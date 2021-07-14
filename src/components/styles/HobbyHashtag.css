@@ -3,7 +3,7 @@
 #hashtag{
     display:inline-block;
     font-size: 18px;
-    background-color: #C4C4C4;
+    background: linear-gradient(to right, #5dfa9e 0%, #94f3fa 100%);
     
     font-family: Didact Gothic, sans-serif;
     border-radius: 5px;
