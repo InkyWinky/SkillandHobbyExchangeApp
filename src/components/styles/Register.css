@@ -1,78 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Dosis:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Dosis:wght@200&display=swap");
 
 @keyframes boxClicked {
-    from {
-        border: 2px solid black;
-    }
-    to {
-        border: 2px solid gray;
-    }
+  from {
+    border: 2px solid black;
+  }
+  to {
+    border: 2px solid gray;
+  }
 }
 
 @keyframes submitHover {
-    from {
-        background-color: #59B200;
-        border: 3px solid #59B200;
-        
-    }
-    to {
-        background-color: #6EDC00;
-        border: 3px solid #6EDC00;
-
-    }
+  from {
+    background-color: #59b200;
+    border: 3px solid #59b200;
+  }
+  to {
+    background-color: #6edc00;
+    border: 3px solid #6edc00;
+  }
 }
 
-html{
-    align-items: center;
-}
+
+html {
+  overflow: hidden;
+  align-items: center;
+
+
 
 .title {
-    font-family: 'Didact Gothic', sans-serif;
-    color: #59B200;
+  font-family: "Didact Gothic", sans-serif;
+  color: #59b200;
 }
 
-#form{
-    display:flex;
-    flex-direction: column;
-    width:25%;
-    margin: 0 auto;
-    
+#form {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: 0 auto;
 }
 
-h4, label {
-    font-family: 'Didact Gothic', sans-serif;
-    font-size: 20px;
+h4,
+label {
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 20px;
 }
 
 label {
-    text-align: left;
-    margin:5px;
+  text-align: left;
+  margin: 5px;
 }
 
-.input-box{
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #59B200;
-    border-radius:4px;
-    
+.input-box {
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #59b200;
+  border-radius: 4px;
 }
 
-#username-input:focus{
-    animation-name: boxClicked;
-    animation-duration: 0.9s;
-    border: 2px solid red;
-}   
+#username-input:focus {
+  animation-name: boxClicked;
+  animation-duration: 0.9s;
+  border: 2px solid red;
+}
 
 #password-box {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 #password-box-entry {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 #password-box-text {
+
+
     color:red;
     margin:auto;
     padding:20px;
@@ -101,11 +103,15 @@ transition:0.5s;
 
 
 #button-text {
-    font-family: Dosis;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 21px;
-    text-align: center;
-    color:white;
-} 
+  font-family: Dosis;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 21px;
+  text-align: center;
+  color: white;
+}
+.warningMessage {
+  color: red;
+  font-size: 12px;
+}

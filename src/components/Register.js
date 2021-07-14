@@ -10,12 +10,26 @@ const Register = () => {
     const [password,setPassword] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [passwordValid, setPasswordValid] = useState(false);
-    const [passwordMatch, setPasswordMatch] = useState(false);
+    const [passwordMatch, setPasswordMatch] = useState(true);
+    const [wrongPassword, setWrongPassword] = useState(true)
+    const [usernameTaken, setUsernameTaken] = useState(false)
+    let x = ['Taylor','Geng','Incy','Sam','Peam'] 
 
     const [registrationStep, setRegistrationStep] = useState(1);
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
+        for(let i=0; i<x.length; i+=1)
+    
+        if(event.target.value===x[i]) 
+            {
+                setUsernameTaken(true)
+                break;
+            }
+        else
+        {
+            setUsernameTaken(false)
+        }      
     }
     const checkUsername =  (event) => {
         console.log(event.target.value)
@@ -47,20 +61,25 @@ const Register = () => {
                 symbolCount += 1;
             }
         }
-          
-
-        
-
-
-
+        if (symbolCount >=2 && intCount >=2)
+        {
+            setPasswordValid(true)
+            setWrongPassword(true)
+        }
+        else 
+        {
+            setWrongPassword(false)
+        }
     }
 
     const checkBothPasswords = () => {
-        if (password == passwordConfirm){
+        if (password === passwordConfirm){
             console.log("YES")
+            setPasswordMatch(true)
         }
         else {
             console.log("NO")
+            setPasswordMatch(false)
         }
     }
 
@@ -70,25 +89,28 @@ const Register = () => {
     }
 
 
+
     return (
         <div style={{width:"100%", height:"100%"}}>
             {(registrationStep == 1 && 
             (<div style={{width:"100%", height:"100%"}}>
                    <Title text="hobex | Register"/>
             <h4>To get started, you have to set up your login credentials!</h4>
-
             <form id="form">
                 <label>USERNAME:</label>     
-                <input className="input-box" type="text" placeholder="Enter username." onChange={handleUsernameChange} onBlur = {checkUsername}></input>           
+                <input className="input-box" type="text" placeholder="Enter username." onChange={handleUsernameChange} onBlur = {checkUsername}></input>
+                {usernameTaken == true && (<h4 className="warningMessage">Your username has been taken. Please try again.</h4>)}          
                 <label>E-MAIL:</label>     
                 <input className ="input-box" type="text" placeholder="Enter e-mail." onChange = {handleEmailChange}></input>          
 
                 <div id="password-box">
                 <div id="password-box-entry">
                 <label>PASSWORD:</label>     
-                <input className ="input-box" type="text" placeholder="Enter password." onChange = {handlePasswordChange} onBlur= {checkPassword}></input>          
+                <input className ="input-box" type="text" placeholder="Enter password." onChange = {handlePasswordChange} onBlur= {checkPassword}></input> 
+                {wrongPassword == false && (<h4 className="warningMessage">Your password does not meet the requirements.</h4>)}        
                 <label>CONFIRM PASSWORD:</label>     
-                <input className ="input-box" type="text" placeholder="Confirm password."onChange = {handlePasswordConfirmChange} onBlur = {checkBothPasswords}></input>          
+                <input className ="input-box" type="text" placeholder="Confirm password."onChange = {handlePasswordConfirmChange} onBlur = {checkBothPasswords}></input>  
+                {passwordMatch == false && (<h4 className="warningMessage">Your passwords do not match.</h4>)}        
                 </div>
                     <div id="password-box-text">
                     *Passwords should contain atleast 2 numerical characters (0-9) and atleast 2 symbols <br></br>(! * / & # $...)
