@@ -1,0 +1,46 @@
+
+#page{
+    width:100%;
+    height:100vh;
+    background-color: gray;
+    display:flex;
+    flex-direction: column;
+}
+
+
+#title {
+    font-family: 'Didact Gothic', sans-serif;
+    color: #59B200;
+    font-size: 48px;
+
+}
+#friendsListBox {
+    width:50%;
+    height:100% ;
+    background-color: white;
+}
+
+#titleContainer{
+    width:100%;
+    height:15%;
+    background-color: blanchedalmond;
+    text-align: center;
+
+}
+#communicationContainer{
+    width:100%;
+    height:85%;
+    background-color: blue;
+    display:flex;
+    justify-content: center;
+    align-items: center ;
+    
+}
+#communicationBox{
+    width:75%;
+    height:70%;
+    background-color: green;
+    display:flex;
+    flex-direction: row;
+    margin:0 auto;
+}
