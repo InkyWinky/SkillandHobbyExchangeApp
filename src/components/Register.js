@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react'
+import RegisterSecondPage from './RegisterSecondPage';
+import RegisterThirdPage from './RegisterThirdPage';
 import './styles/Register.css';
 import Title from "./Title";
 const Register = () => {
@@ -9,6 +11,8 @@ const Register = () => {
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [passwordValid, setPasswordValid] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(false);
+
+    const [registrationStep, setRegistrationStep] = useState(1);
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -60,11 +64,17 @@ const Register = () => {
         }
     }
 
+    const checkAndGoToNextPage = () => {
+        // Checking done here.
+        setRegistrationStep(2);
+    }
 
 
     return (
-        <div>
-            <Title text="hobex | Register"/>
+        <div style={{width:"100%", height:"100%"}}>
+            {(registrationStep == 1 && 
+            (<div style={{width:"100%", height:"100%"}}>
+                   <Title text="hobex | Register"/>
             <h4>To get started, you have to set up your login credentials!</h4>
 
             <form id="form">
@@ -85,8 +95,11 @@ const Register = () => {
                     </div>
                     
                 </div>
-                <button id="form-submit-button"><h2 id="button-text"> NEXT! </h2></button>
+                <button onClick = {checkAndGoToNextPage} id="next-button" className="form-submit-button"><h2 id="button-text"> NEXT! </h2></button>
             </form>
+                </div>))
+                || (registrationStep == 2 && <RegisterSecondPage setReg={setRegistrationStep}/>) || (registrationStep == 3 && <RegisterThirdPage setReg = {setRegistrationStep}/>)}
+         
         </div>
     )
 }
