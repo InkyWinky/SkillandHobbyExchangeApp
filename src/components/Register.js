@@ -10,9 +10,22 @@ const Register = () => {
     const [passwordValid, setPasswordValid] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(true);
     const [wrongPassword, setWrongPassword] = useState(true)
+    const [usernameTaken, setUsernameTaken] = useState(false)
+    let x = ['Taylor','Geng','Incy','Sam','Peam'] 
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
+        for(let i=0; i<x.length; i+=1)
+    
+        if(event.target.value===x[i]) 
+            {
+                setUsernameTaken(true)
+                break;
+            }
+        else
+        {
+            setUsernameTaken(false)
+        }      
     }
     const checkUsername =  (event) => {
         console.log(event.target.value)
@@ -53,13 +66,6 @@ const Register = () => {
         {
             setWrongPassword(false)
         }
-        
-          
-
-        
-
-
-
     }
 
     const checkBothPasswords = () => {
@@ -75,13 +81,15 @@ const Register = () => {
 
 
 
+
     return (
         <div>
             <Title text="hobex | Register"/>
             <h4>To get started, you have to set up your login credentials!</h4>
             <form id="form">
                 <label>USERNAME:</label>     
-                <input className="input-box" type="text" placeholder="Enter username." onChange={handleUsernameChange} onBlur = {checkUsername}></input>           
+                <input className="input-box" type="text" placeholder="Enter username." onChange={handleUsernameChange} onBlur = {checkUsername}></input>
+                {usernameTaken == true && (<h4 className="warningMessage">Your username has been taken. Please try again.</h4>)}          
                 <label>E-MAIL:</label>     
                 <input className ="input-box" type="text" placeholder="Enter e-mail." onChange = {handleEmailChange}></input>          
 
