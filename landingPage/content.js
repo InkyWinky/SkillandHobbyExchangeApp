@@ -12,3 +12,5 @@ function playVideo() {
   };$(document).mousemove(function(event){
 playVideo();
   });
+
+  document.getElementById("signUpBtn").addEventListener('click', window.location.href="http://localhost:3000");
