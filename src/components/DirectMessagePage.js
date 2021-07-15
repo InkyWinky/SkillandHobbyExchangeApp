@@ -35,7 +35,6 @@ const DirectMessagePage = ({username, returnBack}) => {
             <div id="communicationContainer">
                 <div id="communicationBox">
                     <ChatBox username={username}/>
-                    <button onClick={() => {console.log(username)}}>USER</button>
                 </div>
             </div>
 

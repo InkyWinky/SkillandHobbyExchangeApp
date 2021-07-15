@@ -174,22 +174,7 @@ const ChatBox = ({username}) => {
                         <h2 className="button-text">Send</h2>
                         </button>   
                     </div>
-                    <button onClick={() => {console.log(messageList)}}>MESSAGE LIST</button>
-                <button onClick={() => {console.log(friendsChat)}}>FRIENDS CHAT</button>
                 </div>
-                {/* <input type="text" value={connectTo} onChange={(e) => setConnectTo(e.target.value)}></input>
-                <button onClick={() => {console.log(messageList)}}>MESSAGE LIST</button>
-                <button onClick={() => {console.log(friendsChat)}}>FRIENDS CHAT</button>
-                
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}></input>
-                <button onClick={() => {connect(connectTo)}}>CONNECT</button> */}
-        {/* <input type="text" id="message-input" value={connectTo} onChange={(event) => setConnectTo(event.target.value)}></input>
-        <button onClick={connect}>CONNECT</button>
-        
-        
-        <button onClick={() => {let x = Array.from(messageList);x.push("ADDED");setMessageList(x)}}>ADD TOMESSAGE LIST</button> */}
-        {/* <button onClick={() => {socket.emit("test")}}>TEST</button>
-        <button onClick={() => {console.log(username)}}>USER</button> */}
             </div>
         </div>
     )
