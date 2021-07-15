@@ -25,9 +25,11 @@
 html {
   overflow: hidden;
   align-items: center;
+}
 
-
-
+body{
+  background-color: white;
+}
 .title {
   font-family: "Didact Gothic", sans-serif;
   color: #59b200;
