@@ -4,34 +4,40 @@ import Title from "./Title";
 import HobbyHashtag from "./HobbyHashtag";
 import db from '../firebase.config';
 
-const RegisterSecondPage = ({setReg}) => {
+let options = [];
+const RegisterSecondPage = ({username, setReg, reference, setReference, loggedOn, setUsername, setLoggedOn}) => {
 
     const [currentHobby, setCurrentHobby] = useState("#")
     const [display, setDisplay] = useState(false)
     const [currentOptions, setCurrentOptions] = useState([]);
     const [selectedHobbies, setSelectedHobbies] = useState([]);
     
-    const [options, setOptions] = useState([]);
 
-    // useEffect(() => {
-    //     fetchOptions();
-    // }, [])
+    useEffect(() => {
+        fetchOptions();
+    }, [])
 
-    // const fetchOptions = async() => {
-    //     const response = db.collection('existingHobbies');
-    //     const data = await response.get();
-    //     for (let i = 0; i < data.docs.length; i++){
-    //         options.push(data.docs[i].data().hobbyName)
-    //     }
-    // }
+    const fetchOptions = async() => {
+        const response = db.collection('existingHobbies');
+        const data = await response.get();
+        for (let i = 0; i < data.docs.length; i++){
+            options.push(data.docs[i].data().hobbyName)
+        }
+        console.log(options)
+    }
 
-    // const addHobbytoDatabase = async(hobbyName) => {
-    //     const res = await db.collection('existingHobbies').add({
-    //         hobbyName: hobbyName
-    //       });
+    const addHobbytoDatabase = async(hobbyName) => {
+        const res = await db.collection('existingHobbies').add({
+            hobbyName: hobbyName
+          });
           
-    // }
-
+    }
+    const addWantsToLearntoUser = async(hobbiesList) => {
+        const res = await db.collection("userHobbyList").doc(reference).update({
+            wantsToLearn: hobbiesList
+        })
+    }
+// our username is from the Mainpage right if it matches leaw ngai tor
     
 
     function timeout(delay) {
@@ -89,12 +95,22 @@ const RegisterSecondPage = ({setReg}) => {
     }
 
     const checkAndGoToNextPage = () => {
-        // Checking done here.
+        let tempArr = new Array();
+        for (let i = 0; i < selectedHobbies.length; i++){
+            if (options.indexOf(selectedHobbies[i].substring(1)) === -1){
+                addHobbytoDatabase(selectedHobbies[i].substring(1))
+                
+            }
+            tempArr.push(selectedHobbies[i].substring(1))
+        }
+        addWantsToLearntoUser(tempArr)
         setReg(4);
     }
     const goBack = () => {
         setReg(2);
     }
+
+    
 
     return (
         <div id="page">
@@ -123,7 +139,7 @@ const RegisterSecondPage = ({setReg}) => {
                                     </div>
                             )}
                         </div>
-            <button className="form-submit-button"><h2 id="button-text">NEXT! </h2></button>
+            <button onClick={checkAndGoToNextPage}className="form-submit-button"><h2 id="button-text">NEXT! </h2></button>
         </div>
             
                 )

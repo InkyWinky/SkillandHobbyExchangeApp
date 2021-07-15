@@ -1,16 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./styles/Login.css";
 import Title from "./Title";
-
+import db from '../firebase.config';
 
 export default function Login() {
-    const [userName, setUserName] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [users,setUsers] = useState([]);
+    let usersList = []
+
+    useEffect(() => {
+        fetchUsers();
+    }, [])
+
+    const fetchUsers = async() => {
+        const response = db.collection('usersList');
+        const data = await response.get();
+        for (let i = 0; i < data.docs.length; i++){
+               usersList.push(data.docs[i].data().username)
+        }
+    }
+
+
 
     function validateForm(){
-        return userName.length > 0 && password.length > 0;
+        return username.length > 0 && password.length > 0;
     }
 
     function handleSubmit(event){

@@ -3,9 +3,13 @@ import RegisterSecondPage from './RegisterSecondPage';
 import RegisterThirdPage from './RegisterThirdPage';
 import './styles/Register.css';
 import Title from "./Title";
-const Register = () => {
+import db from '../firebase.config';
+import Login from './Login';
 
-    const [username,setUsername] = useState("")
+let usernameList = []
+
+const Register = (username, loggedOn, setUsername, setLoggedOn) => {
+
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
@@ -13,15 +17,35 @@ const Register = () => {
     const [passwordMatch, setPasswordMatch] = useState(true);
     const [wrongPassword, setWrongPassword] = useState(true)
     const [usernameTaken, setUsernameTaken] = useState(false)
-    let x = ['Taylor','Geng','Incy','Sam','Peam'] 
+    const [reference, setReference] = useState(null);
+
+    
+    useEffect(() => {
+        fetchUsers();
+    }, [])
+
+    const fetchUsers = async() => {
+        const response = db.collection('loginInfo');
+        const data = await response.get();
+        for (let i = 0; i < data.docs.length; i++){
+               usernameList.push(data.docs[i].data().username)
+        }
+    }
+    const addUserToDatabase = async(user, email_, pass) => {
+        const res = await db.collection("loginInfo").add({
+            username: user,
+            email: email_,
+            password: pass
+        })
+    }
 
     const [registrationStep, setRegistrationStep] = useState(1);
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
-        for(let i=0; i<x.length; i+=1)
-    
-        if(event.target.value===x[i]) 
+        for(let i=0; i<usernameList.length; i+=1)
+        {
+        if(event.target.value===usernameList[i]) 
             {
                 setUsernameTaken(true)
                 break;
@@ -29,10 +53,15 @@ const Register = () => {
         else
         {
             setUsernameTaken(false)
-        }      
+        }}      
     }
     const checkUsername =  (event) => {
-        console.log(event.target.value)
+        for (let i = 0; i < usernameList.length; i++){
+            if (username === usernameList[i]){
+                setUsernameTaken(true);
+                break;
+            }
+        }
     }
 
     const handleEmailChange = (event) => {
@@ -84,8 +113,12 @@ const Register = () => {
     }
 
     const checkAndGoToNextPage = () => {
-        // Checking done here.
-        setRegistrationStep(2);
+        if (username.length > 0 && !usernameTaken && wrongPassword && passwordMatch){
+            addUserToDatabase(username, email, password)
+        setRegistrationStep(2);}
+        else{
+            alert("Something is wrong with your username/password.")
+        }
     }
 
 
@@ -94,22 +127,24 @@ const Register = () => {
         <div style={{width:"100%", height:"100%"}}>
             {(registrationStep == 1 && 
             (<div style={{width:"100%", height:"100%"}}>
-                   <Title text="hobex | Register"/>
+                   <Title text="hob" sup="ex"/>
+                   <h2>Register!</h2>
+                   <a onClick={()=>{setRegistrationStep(4)}}>or sign in!</a>
             <h4>To get started, you have to set up your login credentials!</h4>
             <form id="form">
-                <label>USERNAME:</label>     
+                <label>USERNAME*:</label>     
                 <input className="input-box" type="text" placeholder="Enter username." onChange={handleUsernameChange} onBlur = {checkUsername}></input>
                 {usernameTaken == true && (<h4 className="warningMessage">Your username has been taken. Please try again.</h4>)}          
-                <label>E-MAIL:</label>     
+                <label>E-MAIL: (optional)</label>     
                 <input className ="input-box" type="text" placeholder="Enter e-mail." onChange = {handleEmailChange}></input>          
 
                 <div id="password-box">
                 <div id="password-box-entry">
-                <label>PASSWORD:</label>     
-                <input className ="input-box" type="text" placeholder="Enter password." onChange = {handlePasswordChange} onBlur= {checkPassword}></input> 
+                <label>PASSWORD*:</label>     
+                <input className ="input-box" type="password" placeholder="Enter password." onChange = {handlePasswordChange} onBlur= {checkPassword}></input> 
                 {wrongPassword == false && (<h4 className="warningMessage">Your password does not meet the requirements.</h4>)}        
-                <label>CONFIRM PASSWORD:</label>     
-                <input className ="input-box" type="text" placeholder="Confirm password."onChange = {handlePasswordConfirmChange} onBlur = {checkBothPasswords}></input>  
+                <label>CONFIRM PASSWORD*:</label>     
+                <input className ="input-box" type="password" placeholder="Confirm password."onChange = {handlePasswordConfirmChange} onBlur = {checkBothPasswords}></input>  
                 {passwordMatch == false && (<h4 className="warningMessage">Your passwords do not match.</h4>)}        
                 </div>
                     <div id="password-box-text">
@@ -118,9 +153,10 @@ const Register = () => {
                     
                 </div>
                 <button onClick = {checkAndGoToNextPage} id="next-button" className="form-submit-button"><h2 id="button-text"> NEXT! </h2></button>
+
             </form>
                 </div>))
-                || (registrationStep == 2 && <RegisterSecondPage setReg={setRegistrationStep}/>) || (registrationStep == 3 && <RegisterThirdPage setReg = {setRegistrationStep}/>)}
+                || (registrationStep == 2 && <RegisterSecondPage username={username} setUsername={setUsername} loggedOn = {loggedOn} setLoggedOn = {setLoggedOn} reference = {reference} setReference = {setReference}username = {username}setReg={setRegistrationStep}/>) || (registrationStep == 3 && <RegisterThirdPage username={username} setUsername={setUsername} loggedOn = {loggedOn} setLoggedOn = {setLoggedOn} reference = {reference} setReference = {setReference} setReg = {setRegistrationStep}/>) || (registrationStep == 4 && <Login loggedOn = {loggedOn} setLoggedOn = {setLoggedOn}/>)}
          
         </div>
     )
