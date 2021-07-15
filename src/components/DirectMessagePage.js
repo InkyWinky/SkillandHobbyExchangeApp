@@ -35,9 +35,6 @@ const DirectMessagePage = () => {
             </div>
             <div id="communicationContainer">
                 <div id="communicationBox">
-                    <div id="friendsListBox">
-                
-                    </div>
                     <ChatBox/>
 
                 </div>
