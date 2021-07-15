@@ -23,10 +23,8 @@ function App() {
     <div className="App">
       {!loggedOn   && <Register username={username} setUsername={setUsername} loggedOn = {loggedOn} setLoggedOn = {setLoggedOn}/>}  
       {loggedOn && <Mainpage username = {username} logout={logout}/> }
-
-
-    </div>
-  );
-  }
+      </div>
+  )
+}
 
 export default App;
