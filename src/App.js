@@ -11,9 +11,6 @@ import Mainpage from "./components/Mainpage";
 import {useState} from 'react';
 // For testing purposes.
 
-
-
-
 function App() {
   const [loggedOn, setLoggedOn] = useState(false);
   const [username, setUsername] = useState("");
@@ -27,8 +24,9 @@ function App() {
       {!loggedOn   && <Register username={username} setUsername={setUsername} loggedOn = {loggedOn} setLoggedOn = {setLoggedOn}/>}  
       {loggedOn && <Mainpage username = {username} logout={logout}/> }
 
+
     </div>
   );
-}
+  }
 
 export default App;
