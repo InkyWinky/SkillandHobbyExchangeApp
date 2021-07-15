@@ -1,0 +1,293 @@
+
+html {
+    height:100%;
+    
+  }
+  body {
+    background-color: #627f86;
+    margin:0;
+    padding:0;
+
+  }
+  p{
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size:6em;
+    margin: 0px;
+  }
+  #earthVideo {
+    /* position: -webkit-sticky;
+
+position: sticky; */
+position: absolute;
+max-width: 40%;
+right: 10%;
+top: 5%;
+z-index: -1;
+    /* min-width: 40%; */
+
+    /* transform: translateX(-50%); */
+  }
+/* CLASSES */
+.titleHeading{
+  margin-bottom:0;
+  margin-top:0;
+  /* transition: margin-bottom 1s;
+  transition-timing-function: ease; */
+}
+.title {
+  padding: 10% 10% 0 10%;
+  color: white;
+  font-size: 6vw;
+  font-family: "Open Sans", sans-serif;
+  z-index: 100;
+
+}
+/* .titleHeading:hover{
+  margin-bottom: 10px;
+} */
+.subheading{
+  color: white;
+  font-size: 5vw;
+  font-family: "Open Sans", sans-serif;
+  z-index: 100;
+  
+}
+.start {
+  /* height: 100vh; */
+  height: 95vh;
+  width: 100%;
+}
+.pink{
+  color: pink;
+}
+.cyan{
+  color: cyan;
+}
+.login-div{
+  height:600px;
+  width: 100%;
+  background-color:#107dac;
+  position: relative;
+
+  
+}
+.about{
+  margin: 0;
+  height: 800px;
+  padding: 80px;
+  width:50%;
+  font-size: large;
+
+}
+.signup-div{
+  height:500px;
+  width: 100%;
+  background-color: #7dc5df;
+  position: relative;
+
+}
+.signup-words{
+  padding: 80px;
+  position: absolute;
+  right: 0px;
+  height: 600px;
+  width:50%;  
+  /* text-align: right; */
+  font-size: large;
+
+}
+.navbar{
+    display:inline-block;
+    width: 100%;
+padding: 0;
+    }
+ul{width: 100%;
+  font-size:0.8em;
+  font-family: 'Open Sans', sans-serif;
+  margin: none;
+    list-style: none;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;
+    position: fixed;
+    padding-inline-start: 0;
+        }
+.centreAlignHelper{
+  display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+  .ballImage{
+    position: absolute;
+    margin: auto 70% auto 10%;
+    max-width: 20%;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+  }
+
+a{
+    text-decoration: none;
+    
+    color:white;
+    font-size: 25px;
+    margin:12px 14px;
+    z-index:99;
+}
+a:hover{
+    color: pink;
+    font-size: 28px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+   
+}
+
+header::before{
+   background:url("https://source.unsplash.com/1600x900/?learning,books");
+   content: "";
+   position:absolute;
+   width:100%;
+   height:100%;
+   z-index:-1;
+   opacity:0.5;
+}
+section{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  color:burlywood;
+  font-size: 30px;
+  padding-top: 30px;
+}
+
+.mastery{
+    font-weight: bolder;
+}
+
+/* ANIMATIONS */
+@keyframes bounce-up {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+.inExchangeFor{
+  background: linear-gradient(180deg, pink 60%, white 40%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: rgba(0,0,0,0);
+  position: absolute;
+  bottom: -53px;
+  left: 40%;
+  z-index: 100;
+  font-size: 6em;
+  margin:0;
+  padding: 0;
+
+}
+.inExchangeFor:hover{
+  background: linear-gradient(180deg, white 60%, pink 40%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: rgba(0,0,0,0);
+}
+/* SASS */
+.parallax {
+  display:block;
+  perspective: 100px;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: inline-block;
+  top: 0; 
+  left: 0vw;
+  right: 0; 
+  bottom: 0;
+  /* margin-left: -1500px; */
+  background-size: 100% 100%;
+  background-color:#7dc5df;
+}
+.bottom-div-test{
+  height:100wh;
+  background-color:#7dc5df;
+}
+
+/* line 30, ../../../sassStyle/sass/screen.scss */
+.parallaxLayer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* line 38, ../../../sassStyle/sass/screen.scss */
+.footerImg {
+
+  width: 100vw;
+  position: absolute;
+  left: -10px;
+}
+
+/* line 49, ../../../sassStyle/sass/screen.scss */
+
+.parallaxLayer0 {
+  transform: translateZ(-200px) scale(3);
+}
+
+/* line 49, ../../../sassStyle/sass/screen.scss */
+.parallaxLayer1 {
+  transform: translateZ(-150px) scale(2.5);
+}
+
+/* line 49, ../../../sassStyle/sass/screen.scss */
+.parallaxLayer2 {
+  transform: translateZ(-100px) scale(2);
+}
+
+/* line 49, ../../../sassStyle/sass/screen.scss */
+.parallaxLayer3 {
+  transform: translateZ(-50px) scale(1.5);
+}
+.parallaxLayer4{
+  transform: translateZ(0px) scale(1);
+}
+.parallaxBase{
+  display: block;
+  position: absolute;
+  height: 50vh;
+  width: 100%;
+  top:100%;
+  background-color: #020113;
+  text-align: center;
+}
+.signUpPersuation{
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+
+}
+.butter{
+  padding: 0;
+}
+.signUpBtn{
+  font-family: 'Lato', sans-serif;
+  background-color:#8045dd;
+  color: white;
+  border-radius: 10px;
+  padding: 30px 50px;
+  font-size: 2.5em;
+  border-style: none;
+  margin-top: 5%;
+  font-weight: lighter;
+}
+.signUpBtn:hover{
+  background-color:#003bcf;
+}
+.footer{
+  color: white;
+  position: absolute;
+  bottom: 0;
+  font-family: 'Lato', sans-serif;
+  padding: 10px;
+  font-size: 1em;
+}

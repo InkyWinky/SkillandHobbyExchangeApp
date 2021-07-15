@@ -1,0 +1,49 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+*{
+    box-sizing: border-box;
+  }
+  
+ 
+  
+  .parallax {
+    perspective: 100px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    margin-left: -1500px;
+  }
+  
+  .parallaxLayer{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+    
+    footerImg{
+      display: block;
+      position: absolute;
+      bottom: 0;
+    }
+  
+  
+  $parallaxLayers: 4;
+  
+  @for $i from 0 through $parallaxLayers {
+    $x: ($parallaxLayers - $i) / 2;
+    .parallaxLayer#{$i}{
+       transform: translateZ(-100 * $x#{px}) scale($x + 1);
+    }
+  }

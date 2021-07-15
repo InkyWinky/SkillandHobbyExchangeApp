@@ -2,7 +2,11 @@
 
 #title {
     font-family: 'Didact Gothic', sans-serif;
-    color: #59B200;
-    font-size: 48px;
+    color: black;
+    font-size: 40px;
+    transition:0.5s;
 
+}
+#title:hover{
+    font-size:80px;
 }
