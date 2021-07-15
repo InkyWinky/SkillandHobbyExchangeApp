@@ -22,6 +22,7 @@ const RegisterSecondPage = ({setReg}) => {
     //     const data = await response.get();
     //     for (let i = 0; i < data.docs.length; i++){
     //         options.push(data.docs[i].data().hobbyName)
+    //         console.log(data.docs[i].data())
     //     }
     // }
 
