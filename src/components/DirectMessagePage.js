@@ -1,14 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import "./styles/DirectMessagePage.css"
 import Title from './Title'
 import ChatBox from "./ChatBox"
 
 
 
-const DirectMessagePage = () => {
+const DirectMessagePage = ({username, returnBack}) => {
     // Get info about current user
     // const getUserInfo = () => {
-
     // }
 
     // Get the Friends List
@@ -35,8 +34,8 @@ const DirectMessagePage = () => {
             </div>
             <div id="communicationContainer">
                 <div id="communicationBox">
-                    <ChatBox/>
-
+                    <ChatBox username={username}/>
+                    <button onClick={() => {console.log(username)}}>USER</button>
                 </div>
             </div>
 

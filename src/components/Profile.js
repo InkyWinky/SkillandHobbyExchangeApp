@@ -11,14 +11,16 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent'; 
 
-const Profile = () =>{
+const Profile = (props) =>{
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     return (
         <Container>
+            <Button onClick={props.returnBack}>Back</Button>
             <Row>
+                
                 <Col lg={1} md={1} sm={1} xs={1}>
                 </Col>
                 <Col lg={10} md={10} sm={10} xs={10}>

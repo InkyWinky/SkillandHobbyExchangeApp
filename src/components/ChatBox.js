@@ -12,11 +12,10 @@ function getRandomInt(max) {
 let test = 0;
 
   let friendsChat = [{username: "14", messages: [{sender: "YOU",message: "HI"}, {sender:"14",message:"Hello!"}]},{username: "15", messages: [{sender: "YOU",message: "HI"}, {sender:"14",message:"Hello!"}]},{username: "16", messages: [{sender: "YOU",message: "HI"}, {sender:"14",message:"Hello!"}]},{username: "17", messages: [{sender: "YOU",message: "HI"}, {sender:"14",message:"Hello!"}]},{username: "18", messages: [{sender: "YOU",message: "HI"}, {sender:"14",message:"Hello!"}]},{username: "19", messages: [{sender: "YOU",message: "HI"}, {sender:"14",message:"Hello!"}]},{username: "20", messages: [{sender: "YOU",message: "HI"}, {sender:"14",message:"Hello!"}]},{username: "21", messages: [{sender: "YOU",message: "HI"}, {sender:"14",message:"Hello!"}]},{username: "22", messages: [{sender: "YOU",message: "HI"}, {sender:"14",message:"Hello!"}]},{username: "ItsMe", messages: [{sender: "YOU",message: "Hello what's up!"}, {sender:"ItsMe",message:"Hello!"}]}]
-const ChatBox = (props) => {
+const ChatBox = ({username}) => {
 
     // function that retrieves this users's ALL chats. AND FRIENDS
     
-    const [username, setUsername] = useState(String(getRandomInt(22)))
     const [socket, setSocket] = useState(io('http://localhost:5000', { transports : ['websocket'] }))
     const [message, setMessage] = useState("")
 
@@ -132,11 +131,12 @@ const ChatBox = (props) => {
                         <h2 className="button-text">Send</h2>
                         </button>   
                     </div>
+
                 </div>
                 {/* <input type="text" value={connectTo} onChange={(e) => setConnectTo(e.target.value)}></input>
                 <button onClick={() => {console.log(messageList)}}>MESSAGE LIST</button>
                 <button onClick={() => {console.log(friendsChat)}}>FRIENDS CHAT</button>
-                <button onClick={() => {socket.emit("test")}}>TEST</button>
+                
                 <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}></input>
                 <button onClick={() => {connect(connectTo)}}>CONNECT</button> */}
         {/* <input type="text" id="message-input" value={connectTo} onChange={(event) => setConnectTo(event.target.value)}></input>
@@ -144,6 +144,8 @@ const ChatBox = (props) => {
         
         
         <button onClick={() => {let x = Array.from(messageList);x.push("ADDED");setMessageList(x)}}>ADD TOMESSAGE LIST</button> */}
+        {/* <button onClick={() => {socket.emit("test")}}>TEST</button>
+        <button onClick={() => {console.log(username)}}>USER</button> */}
             </div>
         </div>
     )

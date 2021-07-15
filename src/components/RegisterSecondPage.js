@@ -2,15 +2,48 @@ import React, {useEffect, useState} from 'react'
 import './styles/RegisterSecondPage.css';
 import Title from "./Title";
 import HobbyHashtag from "./HobbyHashtag";
+import db from '../firebase.config';
 
-const RegisterSecondPage = ({setReg}) => {
+let options = []; //get from database
+
+const RegisterSecondPage = ({username, setReg, reference, setReference, loggedOn, setUsername, setLoggedOn}) => {
 
     const [currentHobby, setCurrentHobby] = useState("#")
     const [display, setDisplay] = useState(false)
     const [currentOptions, setCurrentOptions] = useState([]);
     const [selectedHobbies, setSelectedHobbies] = useState([]);
     
-    let options = []; //get from database
+    
+
+        useEffect(() => {
+        fetchOptions();
+    }, [])
+
+    const fetchOptions = async() => {
+        const response = db.collection('existingHobbies');
+        const data = await response.get();
+        for (let i = 0; i < data.docs.length; i++){
+            options.push(data.docs[i].data().hobbyName)
+        }
+        console.log(options)
+    }
+
+    const addHobbytoDatabase = async(hobbyName) => {
+        const res = await db.collection('existingHobbies').add({
+            hobbyName: hobbyName
+          });
+          
+    }
+    const addUserAndKnowstoDatabase = async(user, hobbiesList) => {
+        const res = await db.collection("userHobbyList").add({
+            username: user,
+            knows: hobbiesList
+        })
+        setReference(res.id)
+    }
+
+
+    
 
     function timeout(delay) {
         return new Promise( res => setTimeout(res, delay) );
@@ -61,7 +94,16 @@ const RegisterSecondPage = ({setReg}) => {
     }
 
     const checkAndGoToNextPage = () => {
-        // Checking done here.
+        let tempArr = new Array();
+        for (let i = 0; i < selectedHobbies.length; i++){
+            if (options.indexOf(selectedHobbies[i].substring(1)) === -1){
+                addHobbytoDatabase(selectedHobbies[i].substring(1))
+                
+            }
+            tempArr.push(selectedHobbies[i].substring(1))
+        }
+        addUserAndKnowstoDatabase(username, tempArr)
+    
         setReg(3);
     }
 
@@ -71,8 +113,9 @@ const RegisterSecondPage = ({setReg}) => {
 
     return (
         <div id="page">
-            <button id="back-button" onClick = {goBack}class="form-submit-button"><h2 id="button-text">Back </h2></button>
-            <Title text="hobex | Register"/>
+            <button id="back-button" onClick = {goBack}className="form-submit-button"><h2 id="button-text">Back </h2></button>
+            <Title text="hob" sup="ex"/>
+            <h2>Register!</h2>
             <h4>What are some hobbies/skills you have?</h4>
             <h4>(This can be edited afterwards!)</h4>
             <div id="currentHobbies">
