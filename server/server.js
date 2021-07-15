@@ -1,4 +1,5 @@
-const io = require('socket.io')(5000)
+const process = require('process')
+const io = require('socket.io')(process.env.PORT || 8888)
 
 connectedUsers = new Array();
 
@@ -21,6 +22,10 @@ const findIndexFromName = (name) => {
 
 
 io.on('connection', socket=>{
+    socket.on("connect_error", (err) => {
+        console.log(`connect_error due to ${err.message}`);
+      });
+
     socket.on('send-chat-message', (message) => {
         // Find this socket's index.
         let index = findIndexFromSocketID(socket.id);
