@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import Prelogin from './components/Prelogin'
 import Register from "./components/Register"
+import DirectMessagePage from "./components/DirectMessagePage"
 import RegisterSecondPage from "./components/RegisterSecondPage"
 import RegisterThirdPage from "./components/RegisterThirdPage"
 import './App.css';
