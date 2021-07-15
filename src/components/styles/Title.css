@@ -4,5 +4,9 @@
     font-family: 'Didact Gothic', sans-serif;
     color: black;
     font-size: 40px;
+    transition:0.5s;
 
+}
+#title:hover{
+    font-size:80px;
 }

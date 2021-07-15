@@ -7,7 +7,7 @@ function playVideo() {
       video.currentTime = (($(document).width())-event.pageX )/ ($(document).width()) * videoLength;
     
     // if (video.currentTime==videoLength){
-
+      
     // }
   };$(document).mousemove(function(event){
 playVideo();

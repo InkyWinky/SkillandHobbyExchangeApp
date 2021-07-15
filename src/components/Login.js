@@ -5,32 +5,46 @@ import "./styles/Login.css";
 import Title from "./Title";
 import db from '../firebase.config';
 
-export default function Login() {
-    const [username, setUsername] = useState("");
+let usersList = []
+const Login = ({loggedOn, setLoggedOn, username, setUsername}) => {
+    const [inputUsername, setInputUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [users,setUsers] = useState([]);
-    let usersList = []
+
 
     useEffect(() => {
         fetchUsers();
     }, [])
 
     const fetchUsers = async() => {
-        const response = db.collection('usersList');
+        const response = db.collection('loginInfo');
         const data = await response.get();
         for (let i = 0; i < data.docs.length; i++){
-               usersList.push(data.docs[i].data().username)
+            usersList.push({user: data.docs[i].data().username, pass: data.docs[i].data().password})
         }
     }
 
 
 
     function validateForm(){
-        return username.length > 0 && password.length > 0;
+        for (let i = 0; i < usersList.length; i++){
+            if (inputUsername === usersList[i].user && password === usersList[i].pass){
+                return true;
+            }
+        }
+        return false;
     }
 
     function handleSubmit(event){
         event.preventDefault();
+        if (validateForm()){
+            setUsername(inputUsername)
+            setLoggedOn(true);
+            console.log("TRUE")
+        }
+        else{
+            console.log("FALSE")
+        }
+
     }
 
     return (
@@ -41,8 +55,8 @@ export default function Login() {
                 <Form.Label>USERNAME: </Form.Label>
                 <Form.Control
                 autoFocustype = "text"
-                value = {userName}
-                onChange = {(e) => setUserName(e.target.value)}
+                value = {inputUsername}
+                onChange = {(e) => setInputUsername(e.target.value)}
                 />
             </Form.Group>
             <Form.Group size = "lg" controlId = "password">
@@ -54,11 +68,13 @@ export default function Login() {
                 />
             </Form.Group>
             <form id="form-submit-button">
-            <Button type = "submit" disabled = {!validateForm()}>
+            <Button type = "submit" onClick = {(event) => {handleSubmit(event)}}>
                 Login
             </Button>
+            
             </form>
             </Form>
         </div>
     );
 }
+export default Login;

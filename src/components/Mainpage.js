@@ -9,6 +9,7 @@ const Mainpage = ({username, logout}) => {
 
     const [page,setPage] = useState("Mainpage");
     const [hobbyList,setHobbyList] = useState([]);
+    const [match, setMatch] = useState([]);
 
     let userHobbyList = []
     let userKnowsList = []
@@ -32,28 +33,36 @@ const Mainpage = ({username, logout}) => {
         
             }
         }
-        for (let i = 0; i < userHobbyList.length; i++){
-            let knowsPassed = false;
-            let wtlPassed = false;
+        // for (let i = 0; i < userHobbyList.length; i++){
+        //     let knowsPassed = false;
+        //     let wtlPassed = false;
 
-            for (let j = 0; j < userHobbyList[i].knows.length; j++){
-            if (userWTLList.indexOf(userHobbyList[i].knows[j]) !== -1){
-                knowsPassed = true;
-                break;
-            }
-            }
+        //     for (let j = 0; j < userHobbyList[i].knows.length; j++){
+        //     if (userWTLList.indexOf(userHobbyList[i].knows[j]) !== -1){
+        //         knowsPassed = true;
+        //         break;
+        //     }
+        //     }
 
-            for (let j = 0; j < userHobbyList[i].knows.length; j++){ // change the .knows to .wantsToLearn
-                if (userWTLList.indexOf(userHobbyList[i].knows[j]) !== -1){ // change the others to the others
-                    knowsPassed = true;
-                    break;
-                }
-                }
+        //     for (let j = 0; j < userHobbyList[i].wantsToLearn.length; j++){ 
+        //         if (userKnowsList.indexOf(userHobbyList[i].wantsToLearn[j]) !== -1){ 
+        //             wtlPassed = true;
+        //             break;
+        //         }
+        //         }
+        //     if (knowsPassed == true && wtlPassed == true){
+        //         matches.push(userHobbyList[i].username);
+        //     }
 
-
-        }
+        // }
             
         
+    }
+
+    const findMatch = () => {
+        if (matches.length > 0){
+            setMatch(matches[0])
+        }
     }
     // yeah okay there's like, abit more
     // basically, with our "userKnowsList" and "userWTLList", I want you to check through userHobbyList and see.. gah damn it's hard to explain
@@ -65,13 +74,12 @@ const Mainpage = ({username, logout}) => {
             {page === "Mainpage" && <div style={{display:'flex', flexDirection:'column'}}><button onClick={ logout} style={{position:"absolute", top:"10px", left:"10px", width:"8%"}}className="form-submit-button"><h2 className="button-text">Logout</h2></button>
             <Title text="hob" sup="ex"/>
             <button onClick={()=>{setPage("Profile")}}className="form-submit-button"><h2 className="button-text">Profile</h2></button>
-            <button id="connectButton" className="form-submit-button"><h2 className="button-text">CONNECT</h2></button>
+            <button onClick={()=>{findMatch()}} id="connectButton" className="form-submit-button"><h2 className="button-text">CONNECT</h2></button>
             <button onClick={() => {setPage("DirectMessage")}}className="form-submit-button"><h2 className="button-text">Friends List!</h2></button></div>}
 
             {page === "Profile" && <Profile returnBack={()=>{setPage("Mainpage")}}/>}
 
             {page === "DirectMessage" && <DirectMessagePage username = {username} returnBack={() => {setPage("Mainpage")}}/>}
-            <button onClick={() => {console.log(username)}}>USER</button>
             
             
 

@@ -8,7 +8,7 @@ import Login from './Login';
 
 let usernameList = []
 
-const Register = (username, loggedOn, setUsername, setLoggedOn) => {
+const Register = ({username, loggedOn, setUsername, setLoggedOn}) => {
 
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
@@ -122,13 +122,12 @@ const Register = (username, loggedOn, setUsername, setLoggedOn) => {
     }
 
 
-
     return (
         <div style={{width:"100%", height:"100%"}}>
             {(registrationStep == 1 && 
             (<div style={{width:"100%", height:"100%"}}>
                    <Title text="hob" sup="ex"/>
-                   <h2>Register!</h2>
+                   <h2 style={{cursor:"pointer"}}>Register!</h2>
                    <a onClick={()=>{setRegistrationStep(4)}}>or sign in!</a>
             <h4>To get started, you have to set up your login credentials!</h4>
             <form id="form">
@@ -156,7 +155,7 @@ const Register = (username, loggedOn, setUsername, setLoggedOn) => {
 
             </form>
                 </div>))
-                || (registrationStep == 2 && <RegisterSecondPage username={username} setUsername={setUsername} loggedOn = {loggedOn} setLoggedOn = {setLoggedOn} reference = {reference} setReference = {setReference}username = {username}setReg={setRegistrationStep}/>) || (registrationStep == 3 && <RegisterThirdPage username={username} setUsername={setUsername} loggedOn = {loggedOn} setLoggedOn = {setLoggedOn} reference = {reference} setReference = {setReference} setReg = {setRegistrationStep}/>) || (registrationStep == 4 && <Login loggedOn = {loggedOn} setLoggedOn = {setLoggedOn}/>)}
+                || (registrationStep == 2 && <RegisterSecondPage username={username} setUsername={setUsername} loggedOn = {loggedOn} setLoggedOn = {setLoggedOn} reference = {reference} setReference = {setReference}username = {username}setReg={setRegistrationStep}/>) || (registrationStep == 3 && <RegisterThirdPage username={username} setUsername={setUsername} loggedOn = {loggedOn} setLoggedOn = {setLoggedOn} reference = {reference} setReference = {setReference} setReg = {setRegistrationStep}/>) || (registrationStep == 4 && <Login loggedOn = {loggedOn} setLoggedOn = {setLoggedOn} username={username} setUsername = {setUsername}/>)}
          
         </div>
     )
