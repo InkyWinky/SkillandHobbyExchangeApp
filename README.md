@@ -7,8 +7,11 @@ Have you ever had a skill you wanted to learn really badly? Have you tried self-
 **Website structure**  <br>
 The website is built as a combination of html/css/js and React.js. The landing page is a static HTML website that redirects to a react application, which has messaging and matching capabilities.
 
-**Intended sequence of events**  <br>
+**Intended sequence of events for local**  <br>
 Start the react app with npm start. In the future, the plan is to have the app hosted on a public url. Go to the landingPage folder, and open the index.html file there in the browser, to view the landing page if you want to see it. From there you can navigate to the react app that has the core functionalities of this web application.
+
+**Public**
+https://inkywinky.github.io/landingPage/
 
 **Current features**  <br>
 Direct Messaging  <br>
