@@ -1,5 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Dosis:wght@200&display=swap%27');
 .Profile{
     font-family: 'Didact Gothic', sans-serif
+}
+
+
+#form-submit-button{
+    background: #59B200;
+    border: 3px solid #59B200;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.Hastags{
+    background: linear-gradient(to right, #5dfa9e 0%, #94f3fa 100%);
+}
+#form-submit-button:hover{
+    cursor:pointer;
+    transition:0.5s;
+    animation-name: submitHover;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+
+}
+
+#form-submit-button:active {
+    box-shadow: 0 5px #667;
+    transform: translateY(9 px);
+}
+
+#button-text {
+    font-family: Dosis;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 21px;
+    text-align: center;
+    color:white;
 }

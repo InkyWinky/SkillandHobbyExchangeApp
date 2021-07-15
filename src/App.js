@@ -6,6 +6,7 @@ import RegisterSecondPage from "./components/RegisterSecondPage"
 import RegisterThirdPage from "./components/RegisterThirdPage"
 import './App.css';
 import db from './firebase.config';
+import Profile from './components/Profile';
 // For testing purposes.
 
 
@@ -15,7 +16,7 @@ function App() {
   return (
     <div className="App">
       
-      <Register/>
+      <Profile/>
       
     </div>
   );
